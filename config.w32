@@ -1,0 +1,7 @@
+ARG_ENABLE('semver', 'semver support', 'no');
+
+if (PHP_SEMVER != 'no') {
+	AC_DEFINE('HAVE_SEMVER', 1, 'semver support enabled');
+
+	EXTENSION('semver', 'semver.c', null, '/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+}

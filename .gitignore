@@ -1,0 +1,13 @@
+build/
+libtool/
+include/
+modules/
+configure*
+*.cache
+config.*
+!config.m4
+!config.w32
+run-tests.php
+Makefile*
+semver.*
+!semver.c
