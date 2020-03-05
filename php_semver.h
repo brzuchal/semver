@@ -26,11 +26,26 @@
 extern zend_module_entry semver_module_entry;
 # define phpext_semver_ptr &semver_module_entry
 
+zend_class_entry *semver_ce_ptr;
+
+typedef struct {
+	semver_t *semver_object_ptr;
+	zend_object  std;
+} semver_object;
+static zend_object_handlers semver_object_handlers;
+
 # define PHP_SEMVER_VERSION "0.1.0"
 
 # define INVALID_ARGUMENT(argname) \
+    INVALID_ARGUMENT_PART(argname, "version"); \
+    return;
+    // zend_throw_exception_ex(spl_ce_InvalidArgumentException, 0, \
+    //     "Invalid argument, %s is not valid version", argname); \
+    // return;
+
+# define INVALID_ARGUMENT_PART(argname, part) \
     zend_throw_exception_ex(spl_ce_InvalidArgumentException, 0, \
-        "Invalid argument, %s is not valid version", argname); \
+        "Invalid argument, %s is not valid %s", argname, part); \
     return;
 
 static void concat_num (char * str, int x, char * sep);
