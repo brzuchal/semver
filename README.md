@@ -33,7 +33,7 @@ if (semver_valid($v) && semver_compare($v, "1.0.0") > 0) {
     echo "Version {$v} is greather than 1.0.0";
 }
 if (semver_satisfies($v, "1.2", ">=")) {
-    echo "Version {$v} is satisfies >=1.2.0";
+    echo "Version {$v} satisfies >=1.2.0 constraint";
 }
 // bumping versions
 echo semver_bump_patch(semver_bump_minor(semver_bump("0.0.0"))); // 1.1.1
