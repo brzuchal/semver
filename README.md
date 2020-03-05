@@ -172,30 +172,43 @@ Things to add to `SemverVersion` class:
 * [ ] checking operator satisfaction for `SemverVersion` object instance: `SemverVersion::satisfies(SemverVersion $version, string $op): bool`
 * [ ] comparing against another `SemverVersion` object instance: `SemverVersion::compare(SemverVersion $version): int`
 * [ ] validating version string `SemverVersion::isValid(string $version): bool` in form of static method doing the same as `semver_valid(string $version)`
-* [ ] buming version, for eg.: `SemverVersion::bump(): SemverVersion`, `SemverVersion::bumpMinor(): SemverVersion` and `SemverVersion::bumpPatch(): SemverVersion`
+* [ ] buming version, for eg.: 
+    ```php
+    class SemverVersion {
+        public function bump(): SemverVersion {}
+        public function bumpMinor(): SemverVersion {}
+        public function bumpPatch(): SemverVersion {}
+    }
+    ```
 
 Things to do with new `SemverComparator` class:
 
 * [ ] static comparison methods, like for eg.: 
-    ```
-    SemverComparator::greaterThan(SemverVersion $x, SemverVersion $y): bool;
-    SemverComparator::greaterThanOrEqual(SemverVersion $x, SemverVersion $y): bool;
-    SemverComparator::lessThan(SemverVersion $x, SemverVersion $y): bool;
-    SemverComparator::lessThanOrEqual(SemverVersion $x, SemverVersion $y): bool;
-    SemverComparator::equal(SemverVersion $x, SemverVersion $y): bool;
+    ```php
+    class SemverComparator {
+        public static function greaterThan(SemverVersion $x, SemverVersion $y): bool {}
+        public static function greaterThanOrEqual(SemverVersion $x, SemverVersion $y): bool {}
+        public static function lessThan(SemverVersion $x, SemverVersion $y): bool {}
+        public static function lessThanOrEqual(SemverVersion $x, SemverVersion $y): bool {}
+        public static function equal(SemverVersion $x, SemverVersion $y): bool {}
+    }
     ```
 * [ ] static sorting methods, like for eg.:
-    ```
-    SemverVersion::sort(array $versions): array;
-    SemverVersion::rsort(array $versions): array;
+    ```php
+    class SemverComparator {
+        public static function sort(array $versions): array {}
+        public static function rsort(array $versions): array {}
+    }
     ```
 
 Things to do with new `SemverConstraint` class:
 
 * [ ] matching `SemverVersion` object instances against complex version constraints, like for eg.: `^5.7 || ^6.5 || ^7.5 || ^8.1`, `1.3.*`, `~1.3.2`, `^1.3.2`, `>=1.3.2` or `1.2.x` (also multi constraint ranges like `>=1.2.3 <=2.3.4`)
-    ```
-    SemverConstraint::__construct(string $constraint);
-    SemverConstraint::match(SemverVersion $version): bool;
-    SemverConstraint::minVersion(array $versions): SemverVersion;
-    SemverConstraint::maxVersion(array $versions): SemverVersion;
+    ```php
+    class SemverConstraint {
+        public function __construct(string $constraint) {}
+        public function match(SemverVersion $version): bool {}
+        public function minVersion(array $versions): SemverVersion {}
+        public function maxVersion(array $versions): SemverVersion {}
+    }
     ```
