@@ -50,6 +50,18 @@ $newVersion = new SemverVersion(1, 5, 8, "beta", date("Ymd"));
 
 ```
 
+## TODO
+
+* [ ] comparison operator overloading for `SemverVersion` object instances, for eg.: `$versionX > $versionY`
+* [ ] casting to string overloading for `SemverVersion` object instances, for eg.: `(int) SemverVersion::createFromString("1.3.6"); // 136`
+* [ ] checking operator satisfaction for `SemverVersion` object instance: `SemverVersion::satisfies(SemverVersion $version, string $op): bool`
+* [ ] comparing against another `SemverVersion` object instance: `SemverVersion::compare(SemverVersion $version): int`
+* [ ] validating version string `SemverVersion::isValid(string $version): bool` in form of static method doing the same as `semver_valid(string $version)`
+* [ ] buming version, for eg.: `SemverVersion::bump(): SemverVersion`, `SemverVersion::bumpMinor(): SemverVersion` and `SemverVersion::bumpPatch(): SemverVersion`
+* [ ] sorting methods, like for eg.: `SemverVersion::sort(array $versions): array` or `SemverVersion::rsort(array $versions): array`
+* [ ] introduce `SemverComparator` with comparison methods, like for eg.: `SemverComparator::greaterThan(SemverVersion $x, SemverVersion $y): bool`, `SemverComparator::greaterThanOrEqual(SemverVersion $x, SemverVersion $y): bool`, `SemverComparator::lessThan(SemverVersion $x, SemverVersion $y): bool`, `SemverComparator::lessThanOrEqual(SemverVersion $x, SemverVersion $y): bool`, `SemverComparator::equal(SemverVersion $x, SemverVersion $y): bool`
+* [ ] introduce `SemverConstraint` which allows matching `SemverVersion` against complex version constraints, like for eg.: `^5.7 || ^6.5 || ^7.5 || ^8.1`, `1.3.*`, `~1.3.2`, `^1.3.2`, `>=1.3.2` or `1.2.x` (maybe even multi constraint ranges like `>=1.2.3 <=2.3.4`)
+
 ## API
 
 ```php
